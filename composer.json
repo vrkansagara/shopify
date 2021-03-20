@@ -1,0 +1,28 @@
+{
+	"name": "vrkansagara/shopify",
+	"description": "allabh Kansagara <vrkansagara@gmail.com>",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Vallabh Kansagara",
+			"email": "vrkansagara@gmail.com",
+			"homepage": "https://vrkansagara.in/"
+		}
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require": {
+		"php": ">=7.0",
+		"guzzlehttp/guzzle": "^7.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"Shopify\\":"src/"
+		}
+	},
+	"require-dev": {
+		"laminas/laminas-coding-standard": "^2.1",
+		"roave/security-advisories": "9999999-dev"
+	}
+}
