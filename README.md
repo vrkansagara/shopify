@@ -2,6 +2,11 @@
 
 SDK for Shopify API
 
+## How to install this library ?
+
+~~~bash
+composer require vrkansagara/shopify
+~~~
 
 ## TODO
 
@@ -17,4 +22,13 @@ SDK for Shopify API
   - [ ] Update
   - [ ] Delete
 
-![Alt text](image/tricolor.jpg?raw=true "India" )
+- [ ] HTTP client
+  - [ ] REST API
+  - [ ] GraphQL
+  - [ ] SOAP Client
+
+### Note
+
+This library in actively under development. Pull request and Issue are most welcome.
+
+![Alt text](image/tricolor.jpg?raw=true "India")
