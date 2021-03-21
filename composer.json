@@ -1,0 +1,52 @@
+{
+	"name": "vrkansagara/shopify",
+	"description": "Vallabh Kansagara <vrkansagara@gmail.com>",
+	"type": "library",
+	"license": "BSD-3-Clause",
+	"homepage": "https://vrkansagara.in",
+	"support": {
+		"docs": "https://vrkansagara.in",
+		"issues": "https://vrkansagara.in",
+		"source": "https://github.com/vrkansagara/shopify",
+		"rss": "https://github.com/vrkansagara/shopify/releases.atom"
+	},
+	"config": {
+		"sort-packages": true
+	},
+	"authors": [
+		{
+			"name": "Vallabh Kansagara",
+			"email": "vrkansagara@gmail.com",
+			"homepage": "https://vrkansagara.in"
+		}
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require": {
+		"php": "^7.3 || ~8.0.0",
+		"guzzlehttp/guzzle": "^7.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"Vrkansagara\\Shopify\\":"src/"
+		},
+		"files": [
+			"Helpers/functions.php"
+		]
+	},
+	"require-dev": {
+		"laminas/laminas-coding-standard": "^2.1",
+		"roave/security-advisories": "9999999-dev",
+		"phpunit/phpunit": "^9.3"
+	},
+	"scripts": {
+		"check": [
+			"@cs-check",
+			"@test"
+		],
+		"cs-check": "phpcs",
+		"cs-fix": "phpcbf",
+		"test": "phpunit --colors=always",
+		"test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+	}
+}
