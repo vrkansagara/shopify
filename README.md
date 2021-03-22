@@ -17,7 +17,7 @@ composer require vrkansagara/shopify
   - [ ] Delete
 
 - [ ] Product
-  - [ ] List
+  - [x] List
   - [ ] Add
   - [ ] Update
   - [ ] Delete
