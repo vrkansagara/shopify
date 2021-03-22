@@ -1,6 +1,6 @@
 {
 	"name": "vrkansagara/shopify",
-	"description": "Vallabh Kansagara <vrkansagara@gmail.com>",
+	"description": "SDK for Shopify API",
 	"type": "library",
 	"license": "BSD-3-Clause",
 	"homepage": "https://vrkansagara.in",
