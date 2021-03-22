@@ -14,13 +14,13 @@ composer require vrkansagara/shopify
   - [x] List
   - [ ] Add
   - [ ] Update
-  - [ ] Delete
+  - [x] Delete
 
 - [ ] Product
   - [x] List
   - [ ] Add
   - [ ] Update
-  - [ ] Delete
+  - [x] Delete
 
 - [ ] HTTP client
   - [ ] REST API
