@@ -22,6 +22,18 @@ composer require vrkansagara/shopify
   - [ ] Update
   - [x] Delete
 
+- [ ] Customer
+  - [ ] List
+  - [ ] Add
+  - [ ] Update
+  - [ ] Delete
+
+- [ ] Collection
+  - [ ] List
+  - [ ] Add
+  - [ ] Update
+  - [ ] Delete
+
 - [ ] HTTP client
   - [ ] REST API
   - [ ] GraphQL
