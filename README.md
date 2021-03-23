@@ -38,7 +38,7 @@ composer require vrkansagara/shopify
   - [x] Delete
 
 - [ ] HTTP client
-  - [ ] REST API
+  - [ ] REST API (WIP)
   - [ ] GraphQL
   - [ ] SOAP Client
 
