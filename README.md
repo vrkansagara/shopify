@@ -11,28 +11,31 @@ composer require vrkansagara/shopify
 ## TODO
 
 - [ ] Order
+  - [x] Get
   - [x] List
   - [ ] Add
   - [ ] Update
   - [x] Delete
 
 - [ ] Product
+  - [x] Get
   - [x] List
   - [ ] Add
   - [ ] Update
   - [x] Delete
 
 - [ ] Customer
-  - [ ] List
+  - [x] Get
+  - [x] List
   - [ ] Add
   - [ ] Update
-  - [ ] Delete
+  - [x] Delete
 
-- [ ] Collection
-  - [ ] List
+- [ ] Collection(ManualCollection and SmartCollection)
+  - [x] List
   - [ ] Add
   - [ ] Update
-  - [ ] Delete
+  - [x] Delete
 
 - [ ] HTTP client
   - [ ] REST API
