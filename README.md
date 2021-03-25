@@ -8,6 +8,10 @@ SDK for Shopify API
 composer require vrkansagara/shopify
 ~~~
 
+## How to contribute in this library ?
+
+For the contribution kindly use the `dev-master` branch.
+
 ## TODO
 
 - [ ] Order
