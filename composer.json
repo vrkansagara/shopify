@@ -29,10 +29,7 @@
 	"autoload": {
 		"psr-4": {
 			"Vrkansagara\\Shopify\\":"src/"
-		},
-		"files": [
-			"Helpers/functions.php"
-		]
+		}
 	},
 	"require-dev": {
 		"laminas/laminas-coding-standard": "^2.1",
