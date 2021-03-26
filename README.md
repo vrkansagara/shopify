@@ -51,4 +51,4 @@ For the contribution kindly use the `dev-master` branch.
 This library in actively under development.
 Pull request and issue are most welcome against `dev-master` branch.
 
-![Alt text](image/tricolor.jpg?raw=true "India")
+![Alt text](image/tricolor-thumb.png?raw=true "India")
