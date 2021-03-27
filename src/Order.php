@@ -2,14 +2,16 @@
 
 namespace Shopify;
 
+
+
 use GuzzleHttp\Psr7\Response;
 
 class Order extends Shopify
 {
 	public $resourceKey = 'orders';
 
-    public function getAll(): Response
-    {
+    public function getAll() : Response
+	{
         $apiResource = sprintf('%s.json',$this->resourceKey);
         return $this->client->get($apiResource);
     }

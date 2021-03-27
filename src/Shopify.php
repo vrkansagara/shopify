@@ -2,7 +2,7 @@
 
 namespace Shopify;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use RuntimeException;
 
 use function getenv;
@@ -12,69 +12,32 @@ class Shopify
 {
     private $config;
 
-    /** * @var $client Client|null */
     protected $client;
 
-    /**@var $clientOptions array */
-    protected $clientOptions = [];
+    private $clientOptions;
 
-    /**
-     * @param null $config
-     * @param array $options
-     */
-    public function __construct($config = null, $options = [], ?Client $client = null)
+    public function __construct()
     {
-        // Validate current config
-        if ($config) {
-            $this->config = $config;
-        } else {
+        if (empty($this->config)) {
             $this->config = self::getEnvConfig();
         }
         $this->validateConfig($this->config);
 
-        // Set client specific options
-        $this->clientOptions = $options;
-
-        // Get/Set client
-        if (isset($client)) {
-            $this->client = $client;
-        } else {
-            $this->setClient();
-        }
-    }
-
-    protected function getEnvConfig(): array
-    {
-        $storeName = getenv('SHOPIFY_STORE_NAME') ?: 'my-dummy-store';
-        $host      = getenv('SHOPIFY_HOST') ?: 'myshopify.com';
-        $version   = getenv('SHOPIFY_VERSION') ?: '2021-01';
-        return [
-            'store_name'         => $storeName,
-            'version'            => $version,
-            'host'               => getenv('SHOPIFY_HOST') ?: $host,
-            'allowed_basic_auth' => getenv('SHOPIFY_BASIC_AUTH_ENABLE') ?: false,
-            'username'           => getenv('SHOPIFY_USERNAME'),
-            'password'           => getenv('SHOPIFY_PASSWORD'),
-        ];
-    }
-
-    public function validateConfig(array $config)
-    {
-        $requiredParams = [
-            'store_name',
-            'host',
-            'version',
-            'allowed_basic_auth',
-        ];
-        foreach ($requiredParams as $key) {
-            if (! isset($config[$key]) || empty($config[$key])) {
-                throw new RuntimeException('Config key missing: ' . $key);
+        if (null == $this->client){
+            if (null == $this->config) {
+                $this->config = self::getEnvConfig();
             }
+            $this->validateConfig($this->config);
+
+            if (empty($this->clientOptions)){
+                // Set client specific options
+                $this->clientOptions = $this->getDefaultOptions();
+            }
+            $client = new GuzzleHttpClient($this->clientOptions);
+            $this->setClient($client);
         }
     }
-
-    public function setClient(): self
-    {
+    protected function getDefaultOptions(): array {
         $config  = $this->config;
         $baseUrl = sprintf(
             'https://%s.%s/admin/api/%s/',
@@ -92,8 +55,87 @@ class Shopify
         if ($config['allowed_basic_auth']) {
             $options['auth'] = [$config['username'], $config['password']];
         }
-        $this->client = new Client($options);
-
-        return $this;
+        return $this->clientOptions = $options;
     }
+
+    protected function getEnvConfig(): array
+    {
+        $storeName = getenv('SHOPIFY_STORE_NAME') ?: 'my-dummy-store';
+        $host      = getenv('SHOPIFY_HOST') ?: 'myshopify.com';
+        $version   = getenv('SHOPIFY_VERSION') ?: '2021-01';
+        return [
+            'store_name'         => $storeName,
+            'version'            => $version,
+            'host'               => getenv('SHOPIFY_HOST') ?: $host,
+            'allowed_basic_auth' => getenv('SHOPIFY_BASIC_AUTH_ENABLE') ?: false,
+            'username'           => getenv('SHOPIFY_USERNAME'),
+            'password'           => getenv('SHOPIFY_PASSWORD'),
+        ];
+    }
+
+    protected function validateConfig(array $config)
+    {
+        $requiredParams = [
+            'store_name',
+            'host',
+            'version',
+            'allowed_basic_auth',
+        ];
+        foreach ($requiredParams as $key) {
+            if (! isset($config[$key]) || empty($config[$key])) {
+                throw new RuntimeException('Config key missing: ' . $key);
+            }
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientOptions()
+    {
+        return $this->clientOptions;
+    }
+
+    /**
+     * @param mixed $clientOptions
+     */
+    public function setClientOptions($clientOptions): void
+    {
+        $this->clientOptions = $clientOptions;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getConfig(): array
+    {
+        return $this->config;
+    }
+
+    /**
+     * @param array $config
+     */
+    public function setConfig(array $config): void
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param mixed $client
+     */
+    public function setClient($client): void
+    {
+        $this->client = $client;
+    }
+
+
 }

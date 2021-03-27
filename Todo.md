@@ -6,3 +6,33 @@
 - [ ] Add static analyser.
 - [ ] Make national flag smaller at ./README.md file.
 - [ ] Add docker base testing for different version testing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# For local development use this code
+
+~~~json
+{
+  "repositories": [
+  {
+    "type": "path",
+      "url": "/home/vallabh/git/vrkansagara/shopify",
+      "options": {
+        "symlink": false
+      }
+  }
+  ]
+}
+~~~

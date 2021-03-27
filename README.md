@@ -8,6 +8,12 @@ SDK for Shopify API
 composer require vrkansagara/shopify
 ~~~
 
+### For development release
+
+~~~bash
+composer require "vrkansagara/shopify:dev-master" --no-cache
+~~~
+
 ## How to contribute in this library ?
 
 For the contribution kindly use the `dev-master` branch.
