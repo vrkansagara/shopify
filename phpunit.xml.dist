@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd" bootstrap="vendor/autoload.php" colors="true">
+<phpunit
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+		bootstrap="vendor/autoload.php"
+		colors="true">
 	<coverage includeUncoveredFiles="true">
 		<include>
 			<directory suffix=".php">./src</directory>
 		</include>
 	</coverage>
 	<testsuites>
-		<testsuite name="laminas-http Test Suite">
+		<testsuite name="Shopify Test Suite">
 			<directory>./test/</directory>
 		</testsuite>
 	</testsuites>
@@ -17,5 +21,6 @@
 	</groups>
 	<php>
 		<ini name="date.timezone" value="UTC"/>
+		<env name="SHOPIFY_BASIC_AUTH_ENABLE" value="true"/>
 	</php>
 </phpunit>
