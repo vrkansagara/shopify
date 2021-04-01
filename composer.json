@@ -31,10 +31,15 @@
 			"Vrkansagara\\Shopify\\":"src/"
 		}
 	},
+	"autoload-dev": {
+		"psr-4": {
+			"Vrkansagara\\ShopifyTest\\":"test/"
+		}
+	},
 	"require-dev": {
 		"laminas/laminas-coding-standard": "^2.1",
-		"roave/security-advisories": "9999999-dev",
-		"phpunit/phpunit": "^9.3"
+		"phpunit/phpunit": "^9.5",
+		"roave/security-advisories": "9999999-dev"
 	},
 	"scripts": {
 		"check": [

@@ -8,6 +8,12 @@ SDK for Shopify API
 composer require vrkansagara/shopify
 ~~~
 
+### For development release
+
+~~~bash
+composer require "vrkansagara/shopify:dev-master" --no-cache
+~~~
+
 ## How to contribute in this library ?
 
 For the contribution kindly use the `dev-master` branch.
@@ -51,4 +57,4 @@ For the contribution kindly use the `dev-master` branch.
 This library in actively under development.
 Pull request and issue are most welcome against `dev-master` branch.
 
-![Alt text](image/tricolor.jpg?raw=true "India")
+![Alt text](image/tricolor-thumb.png?raw=true "India")

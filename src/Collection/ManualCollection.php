@@ -1,24 +1,26 @@
 <?php
 
-namespace Shopify\Collection;
+namespace Vrkansagara\Shopify\Collection;
 
 use GuzzleHttp\Psr7\Response;
-use Shopify\Shopify;
+use Vrkansagara\Shopify\Shopify;
+
+use function sprintf;
 
 class ManualCollection extends Shopify
 {
-	public $resourceKey = 'custom_collections';
+    /** @var string $resourceKey */
+    public $resourceKey = 'custom_collections';
 
     public function getAll(): Response
     {
-        $apiResource = sprintf('%s.json',$this->resourceKey);
+        $apiResource = sprintf('%s.json', $this->resourceKey);
         return $this->client->get($apiResource);
     }
 
     public function delete(int $id): Response
     {
-        $apiResource = sprintf('%s/%d.json',$this->resourceKey,$id);
+        $apiResource = sprintf('%s/%d.json', $this->resourceKey, $id);
         return $this->client->delete($apiResource);
-	}
-
+    }
 }
