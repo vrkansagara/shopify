@@ -2,6 +2,9 @@
 <ruleset name="Laminas coding standard">
     <rule ref="./vendor/laminas/laminas-coding-standard/src/LaminasCodingStandard/ruleset.xml"/>
 
+    <!-- Ignore warnings, show progress of the run and show sniff names -->
+    <arg value="nps"/>
+
     <!-- Paths to check -->
     <file>src</file>
     <file>test</file>

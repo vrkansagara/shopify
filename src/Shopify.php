@@ -1,7 +1,8 @@
 <?php
 
-namespace Shopify;
+namespace Vrkansagara\Shopify;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use RuntimeException;
 
@@ -10,10 +11,13 @@ use function sprintf;
 
 class Shopify
 {
+    /** @var array $config */
     private $config;
 
+    /** @var Client $client */
     protected $client;
 
+    /** @var array $clientOptions */
     private $clientOptions;
 
     public function __construct()
@@ -23,13 +27,13 @@ class Shopify
         }
         $this->validateConfig($this->config);
 
-        if (null == $this->client){
-            if (null == $this->config) {
+        if (null === $this->client) {
+            if (null === $this->config) {
                 $this->config = self::getEnvConfig();
             }
             $this->validateConfig($this->config);
 
-            if (empty($this->clientOptions)){
+            if (empty($this->clientOptions)) {
                 // Set client specific options
                 $this->clientOptions = $this->getDefaultOptions();
             }
@@ -37,7 +41,9 @@ class Shopify
             $this->setClient($client);
         }
     }
-    protected function getDefaultOptions(): array {
+
+    protected function getDefaultOptions(): array
+    {
         $config  = $this->config;
         $baseUrl = sprintf(
             'https://%s.%s/admin/api/%s/',
@@ -104,7 +110,6 @@ class Shopify
         $this->clientOptions = $clientOptions;
     }
 
-
     /**
      * @return array
      */
@@ -136,6 +141,4 @@ class Shopify
     {
         $this->client = $client;
     }
-
-
 }
