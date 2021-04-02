@@ -66,9 +66,9 @@ class Shopify
 
     protected function getEnvConfig(): array
     {
-        $storeName = getenv('SHOPIFY_STORE_NAME') ?: 'my-dummy-store';
-        $host      = getenv('SHOPIFY_HOST') ?: 'myshopify.com';
-        $version   = getenv('SHOPIFY_VERSION') ?: '2021-01';
+        $storeName = getenv('SHOPIFY_STORE_NAME') ?: null;
+        $host      = getenv('SHOPIFY_HOST') ?: null;
+        $version   = getenv('SHOPIFY_VERSION') ?: null;
         return [
             'store_name'         => $storeName,
             'version'            => $version,

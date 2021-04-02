@@ -2,7 +2,6 @@
 
 SDK for Shopify API
 
-![Build workflow](https://github.com/vrkansagara/shopify/blob/development/.github/workflows/php.yml/badge.svg)
 [![Build Status](https://travis-ci.com/vrkansagara/shopify.svg?branch=development)](https://travis-ci.com/vrkansagara/shopify)
 
 ## How to install this library ?

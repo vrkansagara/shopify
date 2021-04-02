@@ -6,6 +6,7 @@
 - [ ] Add static analyser.
 - [ ] Make national flag smaller at ./README.md file.
 - [ ] Add docker base testing for different version testing.
+- [ ] Add request and response log logic
 
 
 
