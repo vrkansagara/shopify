@@ -21,6 +21,9 @@
 	</groups>
 	<php>
 		<ini name="date.timezone" value="UTC"/>
+		<env name="SHOPIFY_STORE_NAME" value="my-dummy-store"/>
+		<env name="SHOPIFY_VERSION" value="2021-01"/>
+		<env name="SHOPIFY_HOST" value="myshopify.com"/>
 		<env name="SHOPIFY_BASIC_AUTH_ENABLE" value="true"/>
 	</php>
 </phpunit>
