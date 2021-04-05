@@ -51,4 +51,7 @@ For the contribution kindly use the `dev-master` branch.
 This library in actively under development.
 Pull request and issue are most welcome against `dev-master` branch.
 
-![Alt text](image/tricolor.jpg?raw=true "India")
+
+#
+Made with :heart: in India 
+<img src="image/tricolor.jpg" width="20" height="20">
