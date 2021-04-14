@@ -40,6 +40,7 @@
 		"laminas/laminas-code": "^4.1",
 		"laminas/laminas-coding-standard": "^2.1",
 		"laminas/laminas-file": "^2.9",
+		"laminas/laminas-filter": "^2.11",
 		"phpunit/phpunit": "^9.5",
 		"roave/security-advisories": "9999999-dev"
 	},

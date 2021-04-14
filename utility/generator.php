@@ -45,16 +45,16 @@ foreach ($files as $fileFullPath => $fileSplInfo){
     $method->setName('hello')->setBody('echo \'Hello world!\';');
 
     $docblock = Laminas\Code\Generator\DocBlockGenerator::fromArray([
-        'shortDescription' => 'Sample generated class',
-        'longDescription'  => 'This is a class generated with Laminas\Code\Generator.',
+//        'shortDescription' => 'Sample generated class',
+//        'longDescription'  => 'This is a class generated with Laminas\Code\Generator.',
         'tags'             => [
             [
-                'name'        => 'version',
-                'description' => '$Rev:$',
+                'name'        => 'license',
+                'description' => 'https://github.com/vrkansagara/shopify/blob/master/LICENSE.md BSD-3-Clause License',
             ],
             [
-                'name'        => 'license',
-                'description' => 'New BSD',
+                'name'        => 'see',
+                'description' => 'https://github.com/vrkansagara/shopify for the canonical source repository',
             ],
         ],
     ]);
@@ -65,8 +65,17 @@ foreach ($files as $fileFullPath => $fileSplInfo){
 //    ['baz', 'bat', PropertyGenerator::FLAG_PUBLIC]
     ];
     $methods= [];
+    $filter = new Laminas\Filter\Word\UnderscoreToCamelCase();
+
     foreach ($json as $key => $value){
-        $properties[] = [$key,$value,PropertyGenerator::FLAG_PUBLIC];
+        $key = lcfirst($filter->filter($key));
+
+        $propertiesGenerator = new PropertyGenerator();
+        $propertiesGenerator->omitDefaultValue(true);
+        $propertiesGenerator->setName($key);
+        $propertiesGenerator->setVisibility(PropertyGenerator::VISIBILITY_PRIVATE);
+
+        $properties[] = $propertiesGenerator;
         $dataType = 'string';
         switch (gettype($key)){
             case is_bool($key):
@@ -117,6 +126,7 @@ foreach ($files as $fileFullPath => $fileSplInfo){
     }
     $class = new Laminas\Code\Generator\ClassGenerator();
     $class->setName($className)
+        ->setNamespaceName('Vrkansagara\Shopify')
         ->setDocblock($docblock)
         ->addProperties($properties)
         ->addMethods($methods)
