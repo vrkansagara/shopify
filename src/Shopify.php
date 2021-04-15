@@ -1,4 +1,10 @@
 <?php
+declare(strict_types = 1);
+
+/**
+* @see       https://github.com/vrkansagara/shopify for the canonical source repository
+* @license   https://github.com/vrkansagara/shopify/blob/master/LICENSE.md New BSD License
+*/
 
 namespace Vrkansagara\Shopify;
 
@@ -11,134 +17,134 @@ use function sprintf;
 
 class Shopify
 {
-    /** @var array $config */
-    private $config;
+	/** @var array $config */
+	private $config;
 
-    /** @var Client $client */
-    protected $client;
+	/** @var Client $client */
+	protected $client;
 
-    /** @var array $clientOptions */
-    private $clientOptions;
+	/** @var array $clientOptions */
+	private $clientOptions;
 
-    public function __construct()
-    {
-        if (empty($this->config)) {
-            $this->config = self::getEnvConfig();
-        }
-        $this->validateConfig($this->config);
+	public function __construct()
+	{
+		if (empty($this->config)) {
+			$this->config = self::getEnvConfig();
+		}
+		$this->validateConfig($this->config);
 
-        if (null === $this->client) {
-            if (null === $this->config) {
-                $this->config = self::getEnvConfig();
-            }
-            $this->validateConfig($this->config);
+		if (null === $this->client) {
+			if (null === $this->config) {
+				$this->config = self::getEnvConfig();
+			}
+			$this->validateConfig($this->config);
 
-            if (empty($this->clientOptions)) {
-                // Set client specific options
-                $this->clientOptions = $this->getDefaultOptions();
-            }
-            $client = new GuzzleHttpClient($this->clientOptions);
-            $this->setClient($client);
-        }
-    }
+			if (empty($this->clientOptions)) {
+				// Set client specific options
+				$this->clientOptions = $this->getDefaultOptions();
+			}
+			$client = new GuzzleHttpClient($this->clientOptions);
+			$this->setClient($client);
+		}
+	}
 
-    protected function getDefaultOptions(): array
-    {
-        $config  = $this->config;
-        $baseUrl = sprintf(
-            'https://%s.%s/admin/api/%s/',
-            $config['store_name'],
-            $config['host'],
-            $config['version']
-        );
-        $options = [
-            'base_uri' => $baseUrl,
-            'headers'  => [
-                'Content-Type' => 'application/json',
-            ],
-        ];
+	protected function getDefaultOptions(): array
+	{
+		$config  = $this->config;
+		$baseUrl = sprintf(
+			'https://%s.%s/admin/api/%s/',
+			$config['store_name'],
+			$config['host'],
+			$config['version']
+		);
+		$options = [
+			'base_uri' => $baseUrl,
+			'headers'  => [
+				'Content-Type' => 'application/json',
+			],
+		];
 
-        if ($config['allowed_basic_auth']) {
-            $options['auth'] = [$config['username'], $config['password']];
-        }
-        return $this->clientOptions = $options;
-    }
+		if ($config['allowed_basic_auth']) {
+			$options['auth'] = [$config['username'], $config['password']];
+		}
+		return $this->clientOptions = $options;
+	}
 
-    protected function getEnvConfig(): array
-    {
-        $storeName = getenv('SHOPIFY_STORE_NAME') ?: null;
-        $host      = getenv('SHOPIFY_HOST') ?: null;
-        $version   = getenv('SHOPIFY_VERSION') ?: null;
-        return [
-            'store_name'         => $storeName,
-            'version'            => $version,
-            'host'               => getenv('SHOPIFY_HOST') ?: $host,
-            'allowed_basic_auth' => getenv('SHOPIFY_BASIC_AUTH_ENABLE') ?: false,
-            'username'           => getenv('SHOPIFY_USERNAME'),
-            'password'           => getenv('SHOPIFY_PASSWORD'),
-        ];
-    }
+	protected function getEnvConfig(): array
+	{
+		$storeName = getenv('SHOPIFY_STORE_NAME') ?: null;
+		$host      = getenv('SHOPIFY_HOST') ?: null;
+		$version   = getenv('SHOPIFY_VERSION') ?: null;
+		return [
+			'store_name'         => $storeName,
+			'version'            => $version,
+			'host'               => getenv('SHOPIFY_HOST') ?: $host,
+			'allowed_basic_auth' => getenv('SHOPIFY_BASIC_AUTH_ENABLE') ?: false,
+			'username'           => getenv('SHOPIFY_USERNAME'),
+			'password'           => getenv('SHOPIFY_PASSWORD'),
+		];
+	}
 
-    protected function validateConfig(array $config)
-    {
-        $requiredParams = [
-            'store_name',
-            'host',
-            'version',
-            'allowed_basic_auth',
-        ];
-        foreach ($requiredParams as $key) {
-            if (! isset($config[$key]) || empty($config[$key])) {
-                throw new RuntimeException('Config key missing: ' . $key);
-            }
-        }
-    }
+	protected function validateConfig(array $config)
+	{
+		$requiredParams = [
+			'store_name',
+			'host',
+			'version',
+			'allowed_basic_auth',
+		];
+		foreach ($requiredParams as $key) {
+			if (! isset($config[$key]) || empty($config[$key])) {
+				throw new RuntimeException('Config key missing: ' . $key);
+			}
+		}
+	}
 
-    /**
-     * @return mixed
-     */
-    public function getClientOptions()
-    {
-        return $this->clientOptions;
-    }
+	/**
+	 * @return mixed
+	 */
+	public function getClientOptions()
+	{
+		return $this->clientOptions;
+	}
 
-    /**
-     * @param mixed $clientOptions
-     */
-    public function setClientOptions($clientOptions): void
-    {
-        $this->clientOptions = $clientOptions;
-    }
+	/**
+	 * @param mixed $clientOptions
+	 */
+	public function setClientOptions($clientOptions): void
+	{
+		$this->clientOptions = $clientOptions;
+	}
 
-    /**
-     * @return array
-     */
-    public function getConfig(): array
-    {
-        return $this->config;
-    }
+	/**
+	 * @return array
+	 */
+	public function getConfig(): array
+	{
+		return $this->config;
+	}
 
-    /**
-     * @param array $config
-     */
-    public function setConfig(array $config): void
-    {
-        $this->config = $config;
-    }
+	/**
+	 * @param array $config
+	 */
+	public function setConfig(array $config): void
+	{
+		$this->config = $config;
+	}
 
-    /**
-     * @return mixed
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
+	/**
+	 * @return mixed
+	 */
+	public function getClient()
+	{
+		return $this->client;
+	}
 
-    /**
-     * @param mixed $client
-     */
-    public function setClient($client): void
-    {
-        $this->client = $client;
-    }
+	/**
+	 * @param mixed $client
+	 */
+	public function setClient($client): void
+	{
+		$this->client = $client;
+	}
 }

@@ -1,4 +1,10 @@
 <?php
+declare(strict_types = 1);
+
+/**
+* @see       https://github.com/vrkansagara/shopify for the canonical source repository
+* @license   https://github.com/vrkansagara/shopify/blob/master/LICENSE.md New BSD License
+*/
 
 namespace Vrkansagara\Shopify;
 
